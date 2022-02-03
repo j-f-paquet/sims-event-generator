@@ -385,48 +385,48 @@ target_link_libraries(JetScapeReader JetScapeThird GTL ${PYTHIA8_LIBRARIES})
 ###########################
 ### Executables         ###
 ###########################
-
-### Run Jetscape
-add_executable(brickTest ./examples/brickTest.cc)
-target_link_libraries(brickTest JetScape )
-
-add_executable(PythiaBrickTest ./examples/PythiaBrickTest.cc)
-target_link_libraries(PythiaBrickTest JetScape )
-
-add_executable(LBT_brickTest ./examples/LBT_brickTest.cc)
-target_link_libraries(LBT_brickTest JetScape )
-
-if(${HDF5_FOUND})
-  add_executable(hydroFileTest ./examples/hydroFileTest.cc)
-  target_link_libraries(hydroFileTest JetScape ${_hdf5_libs})
-  
-  add_executable(hydroJetTest  ./examples/hydroJetTest.cc)
-  target_link_libraries(hydroJetTest JetScape ${_hdf5_libs})
-
-  add_executable(hydroJetTestPGun  ./examples/hydroJetTestPGun.cc)
-  target_link_libraries(hydroJetTestPGun JetScape ${_hdf5_libs})
-endif()
-
-add_executable(SimpleValidate ./examples/SimpleValidate.cc)
-target_link_libraries(SimpleValidate JetScape )
-
-### Read Jetscape output
-add_executable(readerTest ./examples/readerTest.cc)
-target_link_libraries(readerTest JetScape )
-
-add_executable(FinalStateHadrons ./examples/FinalStateHadrons.cc)
-target_link_libraries(FinalStateHadrons JetScape )
-
-add_executable(FinalStatePartons ./examples/FinalStatePartons.cc)
-target_link_libraries(FinalStatePartons JetScape )
+#
+#### Run Jetscape
+#add_executable(brickTest ./examples/brickTest.cc)
+#target_link_libraries(brickTest JetScape )
+#
+#add_executable(PythiaBrickTest ./examples/PythiaBrickTest.cc)
+#target_link_libraries(PythiaBrickTest JetScape )
+#
+#add_executable(LBT_brickTest ./examples/LBT_brickTest.cc)
+#target_link_libraries(LBT_brickTest JetScape )
+#
+#if(${HDF5_FOUND})
+#  add_executable(hydroFileTest ./examples/hydroFileTest.cc)
+#  target_link_libraries(hydroFileTest JetScape ${_hdf5_libs})
+#  
+#  add_executable(hydroJetTest  ./examples/hydroJetTest.cc)
+#  target_link_libraries(hydroJetTest JetScape ${_hdf5_libs})
+#
+#  add_executable(hydroJetTestPGun  ./examples/hydroJetTestPGun.cc)
+#  target_link_libraries(hydroJetTestPGun JetScape ${_hdf5_libs})
+#endif()
+#
+#add_executable(SimpleValidate ./examples/SimpleValidate.cc)
+#target_link_libraries(SimpleValidate JetScape )
+#
+#### Read Jetscape output
+#add_executable(readerTest ./examples/readerTest.cc)
+#target_link_libraries(readerTest JetScape )
+#
+#add_executable(FinalStateHadrons ./examples/FinalStateHadrons.cc)
+#target_link_libraries(FinalStateHadrons JetScape )
+#
+#add_executable(FinalStatePartons ./examples/FinalStatePartons.cc)
+#target_link_libraries(FinalStatePartons JetScape )
 
 # executables with additional dependencies
-
-if (freestream AND music AND iSS)
-  add_executable(freestream-milneTest ./examples/freestream-milneTest.cc)
-  target_link_libraries(freestream-milneTest JetScape ${GSL_LIBRARIES})
-  install(TARGETS freestream-milneTest DESTINATION bin)
-endif (freestream AND music AND iSS)
+#
+#if (freestream AND music AND iSS)
+#  add_executable(freestream-milneTest ./examples/freestream-milneTest.cc)
+#  target_link_libraries(freestream-milneTest JetScape ${GSL_LIBRARIES})
+#  install(TARGETS freestream-milneTest DESTINATION bin)
+#endif (freestream AND music AND iSS)
 
 if (freestream AND music)
   add_executable(TRENTO_FS_HYDRO ./examples/TRENTO_FS_HYDRO.cc)
@@ -446,19 +446,19 @@ if (ktiso)
   install(TARGETS TRENTO_KT DESTINATION bin)
 endif (ktiso)
 
-if ( music AND iSS )
-  add_executable(MUSICTest ./examples/MUSICTest.cc)
-  target_link_libraries(MUSICTest JetScape ${OpenMP_CXX_LIBRARIES} ${GSL_LIBRARIES})
-  install(TARGETS MUSICTest DESTINATION bin)
-endif (music AND iSS )
-
-if ( music AND iSS AND smash )
-  add_executable(SMASHTest ./examples/SMASHTest.cc)
-  include_directories(${SMASH_INCLUDE_DIR})
-  # "-lubsan -lasan")
-  target_link_libraries(SMASHTest JetScape ${SMASH_LIBRARIES} ${MPI_LIBRARIES} ${GSL_LIBRARIES})
-  install(TARGETS SMASHTest DESTINATION bin)
-endif ( music AND iSS AND smash )
+#if ( music AND iSS )
+#  add_executable(MUSICTest ./examples/MUSICTest.cc)
+#  target_link_libraries(MUSICTest JetScape ${OpenMP_CXX_LIBRARIES} ${GSL_LIBRARIES})
+#  install(TARGETS MUSICTest DESTINATION bin)
+#endif (music AND iSS )
+#
+#if ( music AND iSS AND smash )
+#  add_executable(SMASHTest ./examples/SMASHTest.cc)
+#  include_directories(${SMASH_INCLUDE_DIR})
+#  # "-lubsan -lasan")
+#  target_link_libraries(SMASHTest JetScape ${SMASH_LIBRARIES} ${MPI_LIBRARIES} ${GSL_LIBRARIES})
+#  install(TARGETS SMASHTest DESTINATION bin)
+#endif ( music AND iSS AND smash )
 
 if (iS3D AND smash)
    add_executable(SAMPLER_AFTERBURNER ./examples/SAMPLER_AFTERBURNER.cc)
@@ -466,23 +466,17 @@ if (iS3D AND smash)
    install(TARGETS SAMPLER_AFTERBURNER DESTINATION bin)
 endif (iS3D AND smash)
 
-if (iSS)
-   add_executable(iSSSamplingOnly ./examples/iSSSamplingOnly.cc)
-   target_link_libraries(iSSSamplingOnly JetScape ${GSL_LIBRARIES})
-   install(TARGETS iSSSamplingOnly DESTINATION bin)
-endif (iSS)
+#if (iSS)
+#   add_executable(iSSSamplingOnly ./examples/iSSSamplingOnly.cc)
+#   target_link_libraries(iSSSamplingOnly JetScape ${GSL_LIBRARIES})
+#   install(TARGETS iSSSamplingOnly DESTINATION bin)
+#endif (iSS)
 
-if ( music AND iS3D )
-  add_executable(iS3DTest ./examples/iS3DTest.cc)
-  target_link_libraries(iS3DTest JetScape ${MPI_LIBRARIES} ${GSL_LIBRARIES})
-  install(TARGETS iS3DTest DESTINATION bin)
-endif (music AND iS3D )
-
-if ( iS3D )
-  add_executable(iS3DSamplingOnly ./examples/iS3DSamplingOnly.cc)
-  target_link_libraries(iS3DSamplingOnly JetScape ${GSL_LIBRARIES})
-  install(TARGETS iS3DSamplingOnly DESTINATION bin)
-endif ( iS3D )
+#if ( iS3D )
+#  add_executable(iS3DSamplingOnly ./examples/iS3DSamplingOnly.cc)
+#  target_link_libraries(iS3DSamplingOnly JetScape ${GSL_LIBRARIES})
+#  install(TARGETS iS3DSamplingOnly DESTINATION bin)
+#endif ( iS3D )
 
 # if (${ROOT_FOUND})
 #   add_executable(pwg2_reader ./examples/pwg2_reader.cxx)
@@ -518,8 +512,8 @@ if (music)
     file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/EOS)
     file(COPY ${CMAKE_SOURCE_DIR}/external_packages/music/EOS/
       DESTINATION ${CMAKE_BINARY_DIR}/EOS)
-    file(COPY ${CMAKE_SOURCE_DIR}/examples/test_music_files/music_input
-      DESTINATION ${CMAKE_BINARY_DIR})
+    #file(COPY ${CMAKE_SOURCE_DIR}/examples/test_music_files/music_input
+    #  DESTINATION ${CMAKE_BINARY_DIR})
   else()
     message(FATAL_ERROR "Error: Cannot find files for MUSIC.")
   endif()

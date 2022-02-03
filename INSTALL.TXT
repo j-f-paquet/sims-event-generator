@@ -1,0 +1,24 @@
+# Getting singularity up and running
+
+singularity build --sandbox singularity_sandbox docker://jetscape/base:v1.4
+
+singularity shell --writable  --bind /scratch:/mnt/ old_singularity_sandbox/
+
+cd /mnt/jetscape/sims-jetscape/old_singularity_sandbox/
+
+git clone git@github.com:j-f-paquet/sims-event-generator.git
+
+# Getting the external packages and compiling them
+
+source prepare.sh
+
+cd external_packages
+bash get_music.sh ; bash get_freestream-milne.sh ; bash get_iS3D.sh ; bash get_smash.sh
+cd ..
+
+# Compile the package
+
+mkdir build
+cd build
+cmake -Dmusic=on -DiS3D=on -Dsmash=on -Dfreestream=on ../
+make -j
