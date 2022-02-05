@@ -267,39 +267,39 @@ def load_and_compute(inputfile, system, specify_idf=None):
         print("Done with dN(pid)/dy")
 
 
-#        # mean-pT
-#        for s in ['pion','kaon','proton', 'd']:
-#            try :
-#                cenb=np.array(obs_cent_list[system]['mean_pT_'+s])
-#                info = calculate_mean_pT(res, expt_type, cenb, idf)
-#                entry[system]['mean_pT_'+s]['mean'][:,idf] = info['obs'][s]
-#                entry[system]['mean_pT_'+s]['err'][:,idf] = info['err'][s]
-#            except KeyError:
-#                pass
-#        print("Done with identified mean p_T")
-#
-#        # mean-pT-fluct
-#        tmp_obs='pT_fluct'
-#        try :
-#            cenb=np.array(obs_cent_list[system][tmp_obs])
-#            info = calculate_mean_pT_fluct(res, expt_type, cenb, idf)
-#            entry[system][tmp_obs]['mean'][:,idf] = info['obs']
-#            entry[system][tmp_obs]['err'][:,idf] = info['err']
-#        except KeyError :
-#            pass
-#        print("Done with mean p_T fluctuations")
-#
-#        # vn
-#        for n in range(2,5):
-#            tmp_obs='v'+str(n)+'2'
-#            try :
-#                cenb=np.array(obs_cent_list[system][tmp_obs])
-#                info = calculate_vn(res, expt_type, cenb, idf)
-#                entry[system][tmp_obs]['mean'][:,idf] = info['obs'][:, n-1]
-#                entry[system][tmp_obs]['err'][:,idf] = info['err'][:, n-1]
-#            except KeyError :
-#                pass
-#        print("Done with v_n")
+        # mean-pT
+        for s in ['pion','kaon','proton', 'd']:
+            try :
+                cenb=np.array(obs_cent_list[system]['mean_pT_'+s])
+                info = calculate_mean_pT(res, expt_type, cenb, idf)
+                entry[system]['mean_pT_'+s]['mean'][:,idf] = info['obs'][s]
+                entry[system]['mean_pT_'+s]['err'][:,idf] = info['err'][s]
+            except KeyError:
+                pass
+        print("Done with identified mean p_T")
+
+        # mean-pT-fluct
+        tmp_obs='pT_fluct'
+        try :
+            cenb=np.array(obs_cent_list[system][tmp_obs])
+            info = calculate_mean_pT_fluct(res, expt_type, cenb, idf)
+            entry[system][tmp_obs]['mean'][:,idf] = info['obs']
+            entry[system][tmp_obs]['err'][:,idf] = info['err']
+        except KeyError :
+            pass
+        print("Done with mean p_T fluctuations")
+
+        # vn
+        for n in range(2,5):
+            tmp_obs='v'+str(n)+'2'
+            try :
+                cenb=np.array(obs_cent_list[system][tmp_obs])
+                info = calculate_vn(res, expt_type, cenb, idf)
+                entry[system][tmp_obs]['mean'][:,idf] = info['obs'][:, n-1]
+                entry[system][tmp_obs]['err'][:,idf] = info['err'][:, n-1]
+            except KeyError :
+                pass
+        print("Done with v_n")
 
         # pid vn
         """
