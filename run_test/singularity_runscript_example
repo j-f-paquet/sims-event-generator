@@ -1,0 +1,35 @@
+outputDir="$1"
+# Validation
+case ${outputDir} in
+        /*) ;;
+        *) echo "Must provide absolute path to the output directory. Provided: ${outputDir}"; exit 1 ;;
+esac
+
+output_filename="res_singularity.dat"
+output_full_filename="${outputDir}/${output_filename}"
+
+# Print our configuration before continuing
+echo "Will save the results in: ${output_full_filename}"
+
+# Check if file already exists
+if test -f "${output_fulle_filename}"; then
+    echo "${output_full_filename} exists. Aborting..." && exit 1
+fi
+
+
+# Create a temporary directory
+tdir=$(mktemp -d /tmp/foo.XXXXXXXXX)
+echo "Tmp directory is: $tdir"
+
+# Copy files in it
+cp -R /home/jetscape-user/sims-event-generator/run_test/* ${tdir}
+cd ${tdir}
+
+# Set environment variables
+export LD_LIBRARY_PATH=/home/jetscape-user/sims-event-generator/build/src/lib/:/home/jetscape-user/sims-event-generator/build/lib/:/home/jetscape-user/sims-event-generator/build/external_packages/gtl/lib/:/home/jetscape-user/sims-event-generator/build/external_packages/music/src/:/home/jetscape-user/sims-event-generator/build/external_packages/freestream-milne/src/:/home/jetscape-user/sims-event-generator/build/external_packages/iS3D/src/cpp/:/home/jetscape-user/sims-event-generator/external_packages/smash/smash_code/build/src/:$LD_LIBRARY_PATH
+
+# Run code
+python3 run-events-MAP-ALICE-osc.py --nevents 2 --logfile ./test1.log --tmpdir=/tmp/ --tablesdir=./ ./${output_filename}
+
+# Copy the output in a mounted directory
+cp ./${output_filename} ${output_full_filename}

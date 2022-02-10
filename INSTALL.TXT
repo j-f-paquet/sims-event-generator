@@ -2,9 +2,9 @@
 
 singularity build --sandbox singularity_sandbox docker://jetscape/base:v1.4
 
-singularity shell --writable  --bind /scratch:/mnt/ old_singularity_sandbox/
+singularity shell --writable  --bind /scratch:/mnt/ singularity_sandbox/
 
-cd /mnt/jetscape/sims-jetscape/old_singularity_sandbox/
+cd /mnt/jetscape/sims-jetscape/singularity_sandbox/home/jetscape-user/
 
 git clone git@github.com:j-f-paquet/sims-event-generator.git
 
@@ -22,3 +22,10 @@ mkdir build
 cd build
 cmake -Dmusic=on -DiS3D=on -Dsmash=on -Dfreestream=on ../
 make -j
+cd ..
+
+# Add something to the runscript file of the sandbox so that the countainer does something
+vi ..../singularity_sandbox/singularity
+
+# Repackaging the sandbox into a Singularity container
+singularity build repackaged_singularity_sandbox.sif singularity_sandbox/
