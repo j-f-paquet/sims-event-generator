@@ -2,4 +2,4 @@
 See INSTALL.TXT
 
 # How to use
-See run_test/README
+See run_example/README
