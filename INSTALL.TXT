@@ -106,3 +106,10 @@ mkdir build
 cd build
 cmake -Dmusic=on -DiS3D=on -Dsmash=on -Dfreestream=on ../
 make -j
+cd ..
+
+# Add something to the runscript file of the sandbox so that the countainer does something
+vi ..../singularity_sandbox/singularity
+
+# Repackaging the sandbox into a Singularity container
+singularity build repackaged_singularity_sandbox.sif singularity_sandbox/

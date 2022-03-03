@@ -1,0 +1,11 @@
+Script "calculations_average_obs_MAP.py" takes the observables saved by the
+python script "run-events-MAP-ALICE-osc.py", bins the events in centrality
+bins, averages over events, and saves the result into a file. 
+Open the "calculations_average_obs_MAP.py" script for details.
+
+Then the event-averaged observables can be plotted and compared against
+data using the "plot.py" script, which was based on 
+https://github.com/danOSU/vah_argonne/blob/main/generate_plots/VAH_Grad_PTMA.ipynb
+
+Most of the scripts are from https://github.com/j-f-paquet/js-sims-bayes
+

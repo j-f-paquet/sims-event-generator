@@ -248,9 +248,9 @@ Yexp = Y_exp_data
 
 # height_ratios = [1.8, 1.2, 1.5, 1.]
 height_ratios = [2, 1.4, 1.4, 0.7]
-column = 2
+column = 1
 
-fig, axes = plt.subplots(nrows=4, ncols=column, figsize=(6, 8), squeeze=False, 
+fig, axes = plt.subplots(nrows=4, ncols=column, figsize=(3*column, 8), squeeze=False, 
                          gridspec_kw={'height_ratios': height_ratios})
 
 for row, obs_group in enumerate(obs_groups.keys()):
@@ -258,16 +258,16 @@ for row, obs_group in enumerate(obs_groups.keys()):
         expt_label = 'ALICE'
         
         axes[row][0].tick_params(labelsize=9)
-        axes[row][1].tick_params(labelsize=9)
+        #axes[row][1].tick_params(labelsize=9)
         
         scale = 1.0
         
         if obs_group == 'yields':
             axes[row][0].set_yscale('log')
-            axes[row][1].set_yscale('log')
+            #axes[row][1].set_yscale('log')
             
-            axes[row][0].set_title("VAH + 14–moment", fontsize = 11)
-            axes[row][1].set_title("VAH + PTMA", fontsize = 11)
+            axes[row][0].set_title("SIMS MAP with Grad viscous corr.", fontsize = 11)
+            #axes[row][1].set_title("VAH + PTMA", fontsize = 11)
            
             if obs == 'dET_deta':
                 scale = 5.
@@ -311,19 +311,19 @@ for row, obs_group in enumerate(obs_groups.keys()):
 
     if obs_group == 'yields':
         axes[row][0].set_ylim(1, 1e4)
-        axes[row][1].set_ylim(1, 1e4)
+        #axes[row][1].set_ylim(1, 1e4)
     if obs_group == 'mean_pT':
         axes[row][0].set_ylim(0., 1.5)
-        axes[row][1].set_ylim(0., 1.5)
+        #axes[row][1].set_ylim(0., 1.5)
     if obs_group == 'fluct':
         axes[row][0].set_ylim(0.0, 0.04)
-        axes[row][1].set_ylim(0.0, 0.04)
+        #axes[row][1].set_ylim(0.0, 0.04)
     if obs_group == 'flows':
         axes[row][0].set_ylim(0.0, 0.12)
-        axes[row][1].set_ylim(0.0, 0.12)
+        #axes[row][1].set_ylim(0.0, 0.12)
     if axes[row][0].is_last_row():
         axes[row][0].set_xlabel('Centrality %', fontsize = 11)
-        axes[row][1].set_xlabel('Centrality %', fontsize = 11)
+        #axes[row][1].set_xlabel('Centrality %', fontsize = 11)
         
 plt.tight_layout(True)
 # set_tight(fig, rect=[0, 0, 1, 0.95])
