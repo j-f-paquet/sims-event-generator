@@ -1,16 +1,100 @@
-# Getting singularity up and running
+########################################
+# Installation options 
+######################################## 
 
+The simplest way to install and use the code is to do it within a Singularity (or Docker) container.
+
+The code can obviously be installed manually, but many people have found this inconvenient or difficult.
+
+########################################
+# Singularity installation option
+######################################## 
+#
+
+# Getting a Singularity that already has the relevant libraries and packages
+# We'll use docker://jetscape/base:v1.4
+#
 singularity build --sandbox singularity_sandbox docker://jetscape/base:v1.4
 
-singularity shell --writable  --bind /scratch:/mnt/ old_singularity_sandbox/
+# Running Singularity as a sandbox
+# This provides the equivalent of a virtual machine where the code can be run
+# Various directories can be mounted in this "virtual machine" using the "--bind" option
+#
+singularity shell --writable  --bind /scratch:/mnt/ singularity_sandbox_for_jetscape/
 
-cd /mnt/jetscape/sims-jetscape/old_singularity_sandbox/
+# e.g. cd /mnt/jetscape/sims-jetscape/singularity_sandbox_for_jetscape/
+#
+cd [location within the mounted directory]
 
+# Then we can clone the code within the Singularity virtual machine
+#
 git clone git@github.com:j-f-paquet/sims-event-generator.git
 
 # Getting the external packages and compiling them
-
+#
 source prepare.sh
+
+cd external_packages
+bash get_music.sh ; bash get_freestream-milne.sh ; bash get_iS3D.sh ; bash get_smash.sh
+cd ..
+
+# Compile the package
+#
+mkdir build
+cd build
+cmake -Dmusic=on -DiS3D=on -Dsmash=on -Dfreestream=on ../
+make -j
+
+
+
+########################################
+# Manual installation option
+######################################## 
+
+# Get a specific version of PYTHIA and install it
+#
+wget https://pythia.org/download/pythia82/pythia8235.tgz
+tar zxf pythia8235.tgz
+mv pythia8235.tgz pythia8235
+cd pythia8235
+./configure
+make -j
+make install
+cd ..
+
+
+# Get the Eigen library
+#
+wget -O eigen.tar.bz2 https://gitlab.com/libeigen/eigen/-/archive/3.3.9/eigen-3.3.9.tar.bz2
+tar jxf eigen.tar.bz2
+mv eigen-3.3.9 eigen
+mv eigen.tar.bz2 eigen/
+
+# Define different environment variables
+#
+# You can create a file "prepare.sh" with proper links to the different libraries
+# and then run ``source prepare.sh''
+#
+#emacs prepare.sh
+#vi prepare.sh
+#
+# Content of "prepare.sh":
+
+export EIGEN_INSTALL_DIR=`readlink -f ./eigen`
+export EIGEN3_ROOT=`readlink -f ./eigen`
+export GSL=$(gsl-config --prefix)
+export GSL_HOME=$(gsl-config --prefix)
+export GSL_ROOT_DIR=$(gsl-config --prefix)
+export JETSCAPE_DIR=`readlink -f .`
+export SMASH_DIR=${JETSCAPE_DIR}/external_packages/smash/smash_code
+export PYTHIAINSTALLDIR=`readlink -f .`
+export PYTHIA8DIR=${PYTHIAINSTALLDIR}/pythia8235
+export PYTHIA8_ROOT_DIR=${PYTHIAINSTALLDIR}/pythia8235
+export CC=gcc
+export CXX=g++
+export OpenMP_CXX=g++
+
+# Getting the external packages and compiling them
 
 cd external_packages
 bash get_music.sh ; bash get_freestream-milne.sh ; bash get_iS3D.sh ; bash get_smash.sh
