@@ -50,6 +50,18 @@ make -j
 ########################################
 # Manual installation option
 ######################################## 
+#
+# Some pre-requisite
+# SMASH v1.6 is known to compile and work with one of these compilers (which have the
+# required C++11 features):
+# - gcc >= 4.8
+# - clang >= 3.2
+# and it requires the following tools & libraries:
+# - cmake >= 2.8.11
+# - the GNU Scientific Library >= 1.15
+# - the Eigen3 library for linear algebra (see http://eigen.tuxfamily.org)
+# - boost filesystem >= 1.49
+# - Pythia = 8.235
 
 # Get a specific version of PYTHIA and install it
 #
