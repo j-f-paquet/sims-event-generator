@@ -14,7 +14,7 @@ The code can obviously be installed manually, but many people have found this in
 # Getting a Singularity that already has the relevant libraries and packages
 # We'll use docker://jetscape/base:v1.4
 #
-singularity build --sandbox singularity_sandbox docker://jetscape/base:v1.4
+singularity build --sandbox singularity_sandbox_for_jetscape docker://jetscape/base:v1.4
 
 # Running Singularity as a sandbox
 # This provides the equivalent of a virtual machine where the code can be run
@@ -120,8 +120,8 @@ cmake -Dmusic=on -DiS3D=on -Dsmash=on -Dfreestream=on ../
 make -j
 cd ..
 
-# Add something to the runscript file of the sandbox so that the countainer does something
-vi ..../singularity_sandbox/singularity
-
-# Repackaging the sandbox into a Singularity container
-singularity build repackaged_singularity_sandbox.sif singularity_sandbox/
+## Add something to the runscript file of the sandbox so that the countainer does something
+#vi ..../singularity_sandbox_for_jetscape/singularity
+#
+## Repackaging the sandbox into a Singularity container
+#singularity build repackaged_singularity_sandbox.sif singularity_sandbox_for_jetscape/
