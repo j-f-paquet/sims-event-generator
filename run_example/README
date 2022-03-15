@@ -25,6 +25,12 @@ The Python script "run-events-MAP-ALICE-osc.py" is a wrapper that:
 - runs "TRENTO_FS_HYDRO" and "SAMPLER_AFTERBURNER"
 - post-process the output of SMASH and saves observables in a compact format
 
+It may be necessary to set environement variables:
+```
+# Set environment variables
+export LD_LIBRARY_PATH=/home/jetscape-user/sims-event-generator/build/src/lib/:/home/jetscape-user/sims-event-generator/build/lib/:/home/jetscape-user/sims-event-generator/build/external_packages/gtl/lib/:/home/jetscape-user/sims-event-generator/build/external_packages/music/src/:/home/jetscape-user/sims-event-generator/build/external_packages/freestream-milne/src/:/home/jetscape-user/sims-event-generator/build/external_packages/iS3D/src/cpp/:/home/jetscape-user/sims-event-generator/external_packages/smash/smash_code/build/src/:$LD_LIBRARY_PATH
+```
+
 Example:
 python3 run-events-MAP-ALICE-osc.py --nevents 400 --logfile test.log --tmpdir=/tmp/ --tablesdir=./ res.dat
 will:
