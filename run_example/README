@@ -28,7 +28,8 @@ The Python script "run-events-MAP-ALICE-osc.py" is a wrapper that:
 It may be necessary to set environement variables:
 ```
 # Set environment variables
-export LD_LIBRARY_PATH=/home/jetscape-user/sims-event-generator/build/src/lib/:/home/jetscape-user/sims-event-generator/build/lib/:/home/jetscape-user/sims-event-generator/build/external_packages/gtl/lib/:/home/jetscape-user/sims-event-generator/build/external_packages/music/src/:/home/jetscape-user/sims-event-generator/build/external_packages/freestream-milne/src/:/home/jetscape-user/sims-event-generator/build/external_packages/iS3D/src/cpp/:/home/jetscape-user/sims-event-generator/external_packages/smash/smash_code/build/src/:$LD_LIBRARY_PATH
+sims-event-generator-dir="/home/jetscape-user/sims-event-generator/"
+export LD_LIBRARY_PATH=${sims-event-generator-dir}/build/src/lib/:${sims-event-generator-dir}/build/lib/:${sims-event-generator-dir}/build/external_packages/gtl/lib/:${sims-event-generator-dir}/build/external_packages/music/src/:${sims-event-generator-dir}/build/external_packages/freestream-milne/src/:${sims-event-generator-dir}/build/external_packages/iS3D/src/cpp/:${sims-event-generator-dir}/external_packages/smash/smash_code/build/src/:$LD_LIBRARY_PATH
 ```
 
 Example:
