@@ -325,7 +325,7 @@ for row, obs_group in enumerate(obs_groups.keys()):
         axes[row][0].set_xlabel('Centrality %', fontsize = 11)
         #axes[row][1].set_xlabel('Centrality %', fontsize = 11)
         
-plt.tight_layout(True)
+plt.tight_layout()
 # set_tight(fig, rect=[0, 0, 1, 0.95])
 set_tight(fig, rect=[0, 0, 1, 1])
 fig.savefig("observable_plot.png", dpi=300)
