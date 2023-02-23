@@ -15,7 +15,7 @@ if __name__ == '__main__':
         try:
             print("System = " + system)
             #file_input = MAP_dir + '/Events/results_' + system + '.dat'
-            file_input = "res.dat"
+            file_input = "res_example.dat"
             #file_output = MAP_dir + '/Obs/obs_' + system + '.dat'
             file_output = "./observables_averaged_over_events.dat"
             print("Averaging events in " + file_input)
