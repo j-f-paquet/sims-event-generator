@@ -321,7 +321,8 @@ for row, obs_group in enumerate(obs_groups.keys()):
     if obs_group == 'flows':
         axes[row][0].set_ylim(0.0, 0.12)
         #axes[row][1].set_ylim(0.0, 0.12)
-    if axes[row][0].is_last_row():
+    #if axes[row][0].is_last_row():
+    if (row == len(obs_groups.keys()) - 1):
         axes[row][0].set_xlabel('Centrality %', fontsize = 11)
         #axes[row][1].set_xlabel('Centrality %', fontsize = 11)
         
