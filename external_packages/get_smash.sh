@@ -31,3 +31,44 @@ number_of_cores=`nproc --all`
 number_of_cores_to_compile=$(( ${number_of_cores} > 20 ? 20 : ${number_of_cores} ))
 echo "Compiling SMASH using ${number_of_cores_to_compile} cores."
 make -j${number_of_cores_to_compile} smash_shared
+
+
+#Modification I had to make to SMASH to get it to compile
+#diff --git a/src/include/smash/fourvector.h b/src/include/smash/fourvector.h
+#index 660022f4..333752f0 100644
+#--- a/src/include/smash/fourvector.h
+#+++ b/src/include/smash/fourvector.h
+#@@ -10,6 +10,7 @@
+# #include <array>
+# #include <cmath>
+# #include <iosfwd>
+#+#include <stdexcept>
+#
+# #include "threevector.h"
+#
+#diff --git a/src/include/smash/logging.h b/src/include/smash/logging.h
+#index 73c991ce..4015eed6 100644
+#--- a/src/include/smash/logging.h
+#+++ b/src/include/smash/logging.h
+#@@ -12,6 +12,8 @@
+#
+# #include <stdexcept>
+# #include <tuple>
+#+#include <boost/throw_exception.hpp>
+#+#include <boost/exception/diagnostic_information.hpp>
+#
+# #include <yaml-cpp/yaml.h>  // NOLINT(build/include_order)
+# #include <einhard.hpp>
+#diff --git a/src/include/smash/threevector.h b/src/include/smash/threevector.h
+#index 4585110e..5a8683fe 100644
+#--- a/src/include/smash/threevector.h
+#+++ b/src/include/smash/threevector.h
+#@@ -12,6 +12,8 @@
+#
+# #include <array>
+# #include <cmath>
+#+#include <ostream>
+#+
+#
+# #include "constants.h"
+
